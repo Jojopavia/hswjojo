@@ -1,0 +1,40 @@
+*** Questions 
+
+1- Explain the asm() construct in commit 35e3df3a 
+
+** In this case, the asm() construct store the value of the register rsp in the variable "result".
+
+2- Explain commit 09f2316d
+
+**  This commit is about bigobj.lds. This is a linker script, that defines how the linker organizes a specific section of memory, in this case the .data section.
+
+3- Explain commit 8170c532
+
+** This commit is about to add attribute "used" to fix bug in povacca.
+
+4- What is the main electrical difference between SPI and I2C ?
+
+** The main electrical difference between SPI and I2C is that SPI uses separate clock (SCK), data in (MISO) and data out (MOSI) lines for full-duplex communication. Whereas I2C uses a single bidirectional data line (SDA) and a clock (SCL) for half duplex communicaiton. 
+
+5- In the TDC board, explain why U7 (which is a DAC with internal sharp voltage reference) is connected to GPIO 0-22 and what is the role of R23 (please disregard the fact that U7 is not mounted in your specimen)
+
+** U7 converts digital signals (binary values) into analog voltage outputs. The connection to GPIO 0-22 suggests that this pin is used for communication between the microcontroller and the DAC likely via I2C for example or another protocol. R23 is a 4k7Ohms pull-resistor, ensuring proper signal integrity for communication.
+
+
+6- In the TDC board, explain the role of R3 and R4.
+
+** R3 and R4 are both 1K5Ohms resistor used for maintain proper USB communication by ensuring correct signal levels and impedance matching.
+
+
+*** Problems
+1- In the shell program (sw/tests-lpc/shell.c), add a command that plays a tune with the buzzer
+
+** In the file shell_with_buzzer.c 
+
+2- Draft a thermostat application for the TDC board, using 1-14 to turn on the heater and the local MCP9701 as a thermometer.
+3- Write a microcontroller application to log temperatures. Collect one measure every 15 minutes, store data on external memory and allow data collection from the serial port.
+
+** In the file microcontroller_application.c
+
+4- Write a microcontroller application for a market parking site. On entrance, you must print the ticket before opening the ace$cess barrier and on exit you must validate the time stamp of the ticket. Use gpio pins for input and output and assume you have an API to talk with the ticket reader.
+
