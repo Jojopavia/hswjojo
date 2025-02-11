@@ -1,0 +1,88 @@
+**EXAM Jordan ILUNGA MUBENGA**
+This is the exam text, to be performed in 2 hours.
+
+Please configure SSID "hsw2025" with passowrd "exam-today"
+
+
+*** Questions
+_
+Please answer correctly 4 out of 6 questions.  Short and to the point.
+
+1- Summarize in 3 lines the file 0cd2498 (commit a542576)
+
+** The file 0cd2498 is a file named p761-thompson.pdf. This pdf is about Ken Thompson, he wanted to write a source program that, when compiled and executed, will produce as output an exact copy of its source. He did it with the langage FORTRAN, and the file 0cd2498 is in this langage. 
+
+2- Explain the effect of commit 20e8e3a8
+
+**The effect of this commit is to restricts the function's scope to the file it is declared in, because we can see the addition of the "static" at the beginning of the code line.
+
+3- Quickly explain the sw/lds/ part of commit 47492c1
+
+** The sw/lds/ part of this commit is the addition of the "KEEP". The linker script (lds) part ensures critical sections like .vector are preserved by marking them with KEEP, preventing their removal during garbage collection. This is necessary because interrupt vectors aren't directly referenced by entry point but are essential for program execution.
+    
+4- Explain commit 6f02764
+
+** This commit is about adding the time_before() fonction. The time_before() function in many operation systems is used to compare two values, typically in this commit, jiffies and j. It evaluates one value before another in terms of time. 
+
+5- Explain why sw/lib/pll.c defines two weak functions
+
+** This file defines theses two weak functions to allow them to be overriden by a stronger definition elsewhere in the code or anothoer object file during linking. These two functions are "clksel" the choice of the clock and sysoscctl, the control of oscillator of the system.
+
+6- What is the role of R8, R9, R24 in the TDC board?
+
+** R8, R9 and R24 both pull-up resistor for the signal line of VBUS. They ensure that the connected pin VBUS to a high state when no active signal is present because a LOW level on this pin during reset starts the ISP command handler. Also a HIGH level during reset starts he USB device enumeration.
+
+*** Problems
+
+Please start solving 2 of the following problems.
+
+It goes without saying that I expect the problems to be solved in the
+repo, with this hardware and this software base. Anything else is out
+of scope and most likely not written by you.
+
+1- Use the pps input to measure your own oscillator frequency; print
+the calculated frequency to the serial port once per second.  Assume
+it is connected to to a real pps signal, but I'm happy if you also
+detect the absence of such a signal. Estimate the precision of your
+measure.
+
+2- Make an API to access an MCP9701A thermometer connected to an analog
+pin. Implement it relying on a fictious ADC API and use a moving
+average algorithm to increase precision.
+
+3- Implement a calibration mechanism to correct the constant error of
++/- 1 degree in the MCP9701A, considering the "interesting"
+temperatures are around 18-20 degrees. Evaluate the effect of your
+correction circuit over the whole temperature range of the device.
+
+4- Calculate the frequency of the two U8 oscillators. Think of a
+circuit modification to change the duty-cycle. Calculate the freqency
+and duty cycle with one specific configuration of your choice.
+
+** In the TDC.pdf, we have the two U8 oscillators. To calculte their frequency, we can use RC oscillator formula : 1/(2piRC).
+
+U8A = 1/(2*3.14*4700*1*10-6) ~ 33.9Hz 
+U8B = 1/(2*3.14*4700*100*10-9) ~ 338.7
+
+5- Add a Kconfig option to set up even/odd or no parity in the serial
+port. Use it in serial initialization code.
+
+6- Assuming you have a VCXO and DAC mounted, Write an API to drive
+your own processor frequency.  Assume you have an API to write
+millivolt-sharp analog values and assume the VCXO features a linear
+freqency output from -200ppm to +200ppm ove the 0V-3.3V voltage range.
+
+*** How to deliver
+
+You should send me the hash of a commit that covers your work by the
+expected time (it may be the last of several commits in a branch).
+The commit must must a descendant of branch exam-250130 as published
+by me.
+
+Then, to evaluate your work, I need the actual files that match the
+commit hash. You can email a tar/zip file or push to any online place
+where I can pull from, or whatever means that preserves the hash.
+
+Both the answers and the problems must be committed. As an exception,
+if you make any drawings (as opposed to kicad files), please give to
+me the drawing itself on paper.
